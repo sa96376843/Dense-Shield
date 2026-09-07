@@ -4,9 +4,8 @@
 DenseShield - empirical figure generation.
 Reproduces the empirical plots from cached experiment outputs
 (results_summary.json). All plots use English labels (IEEE style). The
-framework schematic is maintained under ../figure1_assets/: GPT Image 2
-established its overall composition, and the final scientific content is
-rebuilt with deterministic vector primitives.
+framework schematic is maintained with the manuscript rather than this
+code-and-data repository.
 """
 import json
 import numpy as np

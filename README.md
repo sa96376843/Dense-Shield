@@ -19,14 +19,9 @@ dataset/
   drebin215.csv           DREBIN-215 feature table
   ClaMP_Integrated-5184.csv
                           ClaMP-5184 feature table
-figure1_assets/
-  PROMPT.md               GPT Image 2 design prompt and constraints
-  AUDIT.md                Module-by-module framework-figure audit
-  generate_fig1_hybrid.py Deterministic vector/text reconstruction
-  fig1_framework_*        Source and submission-ready framework artwork
 ```
 
-The empirical plots are generated from numerical experiment outputs. Figure 1 is a scientific schematic: GPT Image 2 established the overall visual composition, while the final labels, equations, arrows, and small components are rebuilt deterministically in `generate_fig1_hybrid.py`.
+The empirical plots are generated from numerical experiment outputs.
 
 ## Environment
 
