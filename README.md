@@ -1,10 +1,16 @@
 # Dense Shield
 
-Official research artifacts for **DenseShield: A Density-Centric Unified Defense against Evasion, Backdoors, and Concept Drift in Malware Detection**.
+Research artifacts for **DenseShield: Threat-Specific Neural Defenses for Malware Evasion, Backdoors, and Drift**.
 
 Repository: <https://github.com/sa96376843/Dense-Shield>
 
-DenseShield combines sparse feature compression (SFC), density-boosted adversarial training (DBAT), density-guided post-training purification (D-PUR), and drift-adaptive minimal-label adaptation (DMLA) for feature-based malware detectors.
+DenseShield evaluates three threat-specific paths around a common MalMLP architecture. Each path uses a separately trained model instance:
+
+1. DREBIN-215 evasion: sparse feature compression (SFC) followed by density-boosted adversarial training (DBAT).
+2. DREBIN-215 and ClaMP-5184 backdoors: post-training purification (D-PUR) of separately backdoored models using rare-feature suspicion scores and correctly labeled counter-examples.
+3. EMBER2018 temporal drift: uncertainty-guided monthly adaptation (DMLA) using a limited analyst-label budget and confident pseudo-labels.
+
+The reported experiments do not apply these paths sequentially to a single detector or share trained parameters across the paths.
 
 ## Repository contents
 
