@@ -14,6 +14,13 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 R = json.load(open('results_summary.json'))
+def aut_f1(values):
+    """Trapezoidal mean of adjacent monthly F1 values (paper Eq. AUT)."""
+    values = np.asarray(values, dtype=float)
+    if values.size < 2:
+        raise ValueError('AUT requires at least two monthly F1 values')
+    return float(np.mean((values[:-1] + values[1:]) / 2))
+
 plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 9,
                      'axes.titlesize': 9.5, 'axes.labelsize': 9,
                      'legend.fontsize': 7.5, 'xtick.labelsize': 8,
@@ -53,7 +60,7 @@ mk = {'No update': ('o', C['grey']), 'Random 5%': ('s', C['blue']),
       'Oracle 20%': ('v', C['purple'])}
 for name, v in drift.items():
     m, c = mk[name]
-    ax.plot(mlist, v, marker=m, ms=4.5, lw=1.7, color=c, label=f'{name} (AUT={np.mean(v):.3f})')
+    ax.plot(mlist, v, marker=m, ms=4.5, lw=1.7, color=c, label=f'{name} (AUT={aut_f1(v):.3f})')
 ax.set_xticks(mlist); ax.set_xticklabels(['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'])
 ax.set_xlabel('Evaluation month (2017)'); ax.set_ylabel('Monthly F1')
 ax.legend(fontsize=7, loc='lower left'); ax.set_ylim(0.80, 0.92)

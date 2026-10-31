@@ -26,6 +26,13 @@ from denseshield import (SFC, density_weights, MalMLP, train_mlp, eval_model,
 rng = np.random.RandomState(42)
 OUT = {}
 
+def aut_f1(values):
+    """Trapezoidal mean of adjacent monthly F1 values (paper Eq. AUT)."""
+    values = np.asarray(values, dtype=float)
+    if values.size < 2:
+        raise ValueError('AUT requires at least two monthly F1 values')
+    return float(np.mean((values[:-1] + values[1:]) / 2))
+
 # ---------------------------------------------------------------------
 # 1. Load datasets
 # ---------------------------------------------------------------------
@@ -215,7 +222,7 @@ def run_drift():
 
 try:
     OUT['drift_ember'] = run_drift()
-    print('RQ4 drift AUT:', {k: round(float(np.mean(v)), 4) for k, v in OUT['drift_ember'].items()})
+    print('RQ4 drift AUT:', {k: round(aut_f1(v), 4) for k, v in OUT['drift_ember'].items()})
 except FileNotFoundError:
     print('EMBER preprocessed files not found - run ember_proc.py first.')
 
